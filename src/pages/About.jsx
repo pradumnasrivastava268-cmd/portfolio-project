@@ -17,12 +17,12 @@ export default function About() {
   return (
     <section
       id="about"
-      className="min-h-screen w-full flex items-center justify-center relative bg-black text-white overflow-hidden"
+      className="min-h-screen w-full flex items-center justify-center relative bg-[#020617] text-white overflow-hidden"
     >
       <div className="absolute inset-0 pointer-events-none">
         {glows.map((c, i) => (
           <div
-            className={`absolute rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] animate-pulse ${c}`}
+            className={`absolute rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-600 animate-pulse ${c}`}
             key={i}
           />
         ))}
@@ -37,7 +37,7 @@ export default function About() {
           viewport={{ once: true, amount: 0.4 }}
         >
           <motion.div
-            className="relative w-40 h-40 md:w-50 md:h-50 rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#302b63]/20 to-[#37053c]/20 border-2 border-[#692097]"
+            className="relative w-40 h-40 md:w-50 md:h-50 rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-emerald-500/15 to-blue-600/15 border-2 border-teal-400/40"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 200, damping: 18 }}
           >
@@ -47,47 +47,59 @@ export default function About() {
               className="w-full h-full object-cover"
             />
           </motion.div>
+
           <div className="flex flex-1 flex-col justify-center text-center md:text-left">
-            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#1580de] via-[#22217f] to-[#302b63]">
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 via-teal-300 to-blue-400">
               Pradumna Srivastava
             </h2>
+
             <p className="mt-2 text-lg sm:text-xl text-white/90">
-              Assistant Manager Supply Chain & Operations
+              Assistant Manager - Supply Chain & Operations
             </p>
-            <p className="mt-4 text-gray-300 leading-relaxed text-base sm:text-lg max-w-2xl md:max-w-3xl">
-              Supply chain and operations professional with 3+ years of experience in DHL, Flipkart, and Zepto. Skilled in optimizing logistics, enhancing operational efficiency, and driving cost savings. Proven track record of leading cross-functional teams to implement innovative solutions that improve supply chain performance and customer satisfaction.            </p>
+
+            <p className="mt-4 text-slate-300 leading-relaxed text-base sm:text-lg max-w-2xl md:max-w-3xl">
+              Supply chain and operations professional with 3+ years of experience
+              across DHL, Flipkart, and Zepto. Skilled in logistics optimisation,
+              operational efficiency, and cost reduction, with a proven track
+              record of leading cross-functional teams to implement solutions that
+              improve supply chain performance and customer satisfaction.
+            </p>
 
             <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 max-w-xl">
               {stats.map((item, i) => (
                 <motion.div
                   key={i}
-                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-center"
+                  className="rounded-xl border border-teal-300/15 bg-white/5 px-4 py-3 text-center backdrop-blur"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: i * 0.05 }}
                   viewport={{ once: true, amount: 0.3 }}
                 >
-                  <div className="text-sm text-gray-400">{item.label}</div>
-                  <div className="text-base font-semibold">{item.value}</div>
+                  <div className="text-sm text-slate-400">{item.label}</div>
+                  <div className="text-base font-semibold text-white">
+                    {item.value}
+                  </div>
                 </motion.div>
               ))}
             </div>
+
             <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center rounded-lg bg-white text-black font-semibold px-5 py-3 hover:bg-gray-200 transition"
+                className="inline-flex items-center justify-center rounded-lg px-5 py-3 font-semibold text-white bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-600 shadow-lg hover:opacity-90 transition"
               >
                 View Projects
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/10 text-white px-5 py-3 hover:bg-white/20 transition"
+                className="inline-flex items-center justify-center rounded-lg border border-teal-300/20 bg-white/10 text-white px-5 py-3 hover:bg-white/15 transition backdrop-blur"
               >
                 Get in Touch
               </a>
             </div>
           </div>
         </motion.div>
+
         <motion.div
           className="text-center md:text-left"
           initial={{ opacity: 0, x: -30 }}
@@ -98,13 +110,21 @@ export default function About() {
           <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
             About Me
           </h3>
-          <p className="text-gray-300 leading-relaxed text-base sm:text-lg">
-            At DHL, Flipkart & Zepto I Streamlined warehouse and logistics operations using SAP, Power BI, and data-driven insights, improving throughput, accuracy, and cost efficiency.
-Led process optimisation and demand planning initiatives, boosting productivity and enabling scalable, high-performance supply chain operations.
+
+          <p className="text-slate-300 leading-relaxed text-base sm:text-lg">
+            At DHL, Flipkart, and Zepto, I streamlined warehouse and logistics
+            operations using SAP, Power BI, and data-driven insights to improve
+            throughput, accuracy, and cost efficiency. I also led process
+            optimisation and demand planning initiatives that boosted productivity
+            and enabled scalable, high-performance supply chain operations.
           </p>
-          <p className="mt-4 text-gray-400 text-base sm:text-lg">
-            Currently pursuing an MSc in Information Systems and Operations Management at the University of Nottingham, focusing on analytics, system design, and operations strategy.
-Bridging engineering and analytics to enhance supply chain performance, forecasting, and process efficiency in complex environments.
+
+          <p className="mt-4 text-slate-400 text-base sm:text-lg leading-relaxed">
+            I am currently pursuing an MSc in Information Systems and Operations
+            Management at the University of Nottingham, with a focus on analytics,
+            system design, and operations strategy. My goal is to bridge
+            engineering and analytics to enhance supply chain performance,
+            forecasting, and process efficiency in complex environments.
           </p>
         </motion.div>
       </div>

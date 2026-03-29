@@ -57,21 +57,24 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="w-full min-h-screen relative bg-black overflow-hidden text-white py-20 px-6 md:px-20 flex flex-col md:flex-row md:justify-center items-center gap-10"
+      className="w-full min-h-screen relative bg-[#020617] overflow-hidden text-white py-20 px-6 md:px-20 flex flex-col md:flex-row md:justify-center items-center gap-10"
     >
       <ParticlesBackground />
+
       <div className="relative z-10 w-full flex flex-col md:flex-row md:justify-center items-center gap-10">
         <motion.div
-          className="w-full md:w-1/2 bg-white/5 p-8 rounded-2xl shadow-lg border border-white/10"
+          className="w-full md:w-1/2 bg-white/5 p-8 rounded-2xl shadow-lg border border-teal-300/15 backdrop-blur"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold mb-6">Let's Work Together</h2>
+          <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 via-teal-300 to-blue-400">
+            Let&apos;s Work Together
+          </h2>
 
           <form className="flex flex-col gap-5" onSubmit={formik.handleSubmit}>
             <div className="flex flex-col">
-              <label className="mb-1">
+              <label className="mb-1 text-slate-200">
                 Your Name<span className="text-red-500">*</span>
               </label>
               <input
@@ -82,17 +85,16 @@ export default function Contact() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 className={`p-3 rounded-md bg-white/10 border ${
-                  fieldError("name") ? "border-red-500" : "border-gray-500"
-                } text-white focus:outline-none focus:border-[#692097] transition-colors`}
+                  fieldError("name") ? "border-red-500" : "border-slate-600"
+                } text-white placeholder:text-slate-400 focus:outline-none focus:border-teal-400 transition-colors`}
               />
               {fieldError("name") && (
-                <p className="text-red-500 text-xs mt-1">
-                  {fieldError("name")}
-                </p>
+                <p className="text-red-500 text-xs mt-1">{fieldError("name")}</p>
               )}
             </div>
+
             <div className="flex flex-col">
-              <label className="mb-1">
+              <label className="mb-1 text-slate-200">
                 Your Email<span className="text-red-500">*</span>
               </label>
               <input
@@ -103,17 +105,16 @@ export default function Contact() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 className={`p-3 rounded-md bg-white/10 border ${
-                  fieldError("email") ? "border-red-500" : "border-gray-500"
-                } text-white focus:outline-none focus:border-[#692097] transition-colors`}
+                  fieldError("email") ? "border-red-500" : "border-slate-600"
+                } text-white placeholder:text-slate-400 focus:outline-none focus:border-teal-400 transition-colors`}
               />
               {fieldError("email") && (
-                <p className="text-red-500 text-xs mt-1">
-                  {fieldError("email")}
-                </p>
+                <p className="text-red-500 text-xs mt-1">{fieldError("email")}</p>
               )}
             </div>
+
             <div className="flex flex-col">
-              <label className="mb-1">
+              <label className="mb-1 text-slate-200">
                 Your Message<span className="text-red-500">*</span>
               </label>
               <textarea
@@ -124,8 +125,8 @@ export default function Contact() {
                 onBlur={formik.handleBlur}
                 rows={4}
                 className={`bg-white/10 border ${
-                  fieldError("message") ? "border-red-500" : "border-white/20"
-                } rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#692097]/50 transition-colors resize-none`}
+                  fieldError("message") ? "border-red-500" : "border-slate-600"
+                } rounded-lg p-3 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-400/40 transition-colors resize-none`}
               />
               {fieldError("message") && (
                 <p className="text-red-500 text-xs mt-1">
@@ -133,14 +134,15 @@ export default function Contact() {
                 </p>
               )}
             </div>
+
             {status && (
               <p
                 className={`text-sm ${
                   status === "success"
-                    ? "text-green-400"
+                    ? "text-emerald-400"
                     : status === "error"
                       ? "text-red-400"
-                      : "text-yellow-400"
+                      : "text-amber-400"
                 }`}
               >
                 {status === "sending"
@@ -150,12 +152,11 @@ export default function Contact() {
                     : "Something went wrong. Please try again."}
               </p>
             )}
+
             <motion.button
               type="submit"
               disabled={status === "sending" || formik.isSubmitting}
-              className="py-3 rounded-full font-semibold text-white
-                         bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097]
-                         shadow-lg disabled:opacity-60 transition-all"
+              className="py-3 rounded-full font-semibold text-white bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-600 shadow-lg disabled:opacity-60 transition-all"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >

@@ -34,7 +34,9 @@ export default function Navbar() {
       },
       { threshold: 0.1 },
     );
+
     if (homeSection) observer.observe(homeSection);
+
     return () => {
       if (homeSection) observer.unobserve(homeSection);
     };
@@ -46,7 +48,9 @@ export default function Navbar() {
         setVisible(true);
         return;
       }
+
       const currentScrollY = window.scrollY;
+
       if (currentScrollY > lastScrollY.current) {
         setVisible(false);
       } else {
@@ -54,14 +58,18 @@ export default function Navbar() {
         if (timerID.current) clearTimeout(timerID.current);
         timerID.current = setTimeout(() => setVisible(false), 1500);
       }
+
       lastScrollY.current = currentScrollY;
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       if (timerID.current) clearTimeout(timerID.current);
     };
   }, [forceVisible]);
+
   useEffect(() => {
     const observers = [];
 
@@ -75,6 +83,7 @@ export default function Navbar() {
         },
         { threshold: 0.3 },
       );
+
       obs.observe(el);
       observers.push(obs);
     });
@@ -89,25 +98,28 @@ export default function Navbar() {
           visible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        <div className="text-2xl font-bold text-white hidden sm:block" />
+        <div className="hidden sm:block text-2xl font-bold text-white" />
+
         <div className="block ml-auto lg:ml-0 lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2">
           <button
             onClick={() => setMenuOpen(true)}
-            className="text-white text-3xl focus:outline-none"
+            className="text-white text-3xl focus:outline-none transition hover:text-emerald-300"
             aria-label="Open Menu"
           >
             <FiMenu />
           </button>
         </div>
+
         <div className="hidden lg:block">
           <a
             href="#contact"
-            className="bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] text-white px-5 py-2 rounded-full font-medium shadow-lg hover:opacity-90 transition-opacity duration-300"
+            className="px-5 py-2 rounded-full font-medium text-white shadow-lg transition-all duration-300 hover:opacity-90 hover:scale-105 bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-600"
           >
             Reach Out
           </a>
         </div>
       </nav>
+
       <OverlayMenu
         isOpen={menuOpen}
         onClose={() => setMenuOpen(false)}

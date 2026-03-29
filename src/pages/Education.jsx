@@ -44,7 +44,6 @@ export default function Education() {
     offset: ["start start", "end end"],
   });
 
-  // ✅ FIXED SPELLING
   const threshold = useMemo(
     () => education.map((_, i) => (i + 1) / education.length),
     [],
@@ -53,17 +52,15 @@ export default function Education() {
   const lineSize = useTransform(scrollYProgress, (v) => `${v * 100}%`);
 
   return (
-    <section id="education" className="relative bg-black text-white">
+    <section id="education" className="relative bg-[#020617] text-white">
       <div
         ref={sceneRef}
         style={{ height: `${SCENE_HEIGHT_VH}vh`, minHeight: "120vh" }}
         className="relative"
       >
         <div className="sticky top-0 h-screen flex flex-col">
-
-          {/* TITLE */}
           <motion.h2
-            className="text-4xl sm:text-5xl font-semibold mt-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-[#1580de] via-[#22217f] to-[#302b63]"
+            className="text-4xl sm:text-5xl font-semibold mt-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-300 to-blue-400"
             initial={{ opacity: 0, y: -30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -72,22 +69,16 @@ export default function Education() {
             Education
           </motion.h2>
 
-          {/* CONTENT */}
           <div className="flex flex-1 items-center justify-center px-6 pb-10">
-
-            {/* DESKTOP */}
             {!isMobile && (
               <div className="relative w-full max-w-[1200px]">
-
-                {/* TIMELINE BAR */}
-                <div className="relative h-2 bg-white/30 rounded-full">
+                <div className="relative h-2 bg-white/20 rounded-full">
                   <motion.div
-                    className="absolute top-0 left-0 h-2 bg-white rounded-full origin-left"
+                    className="absolute top-0 left-0 h-2 rounded-full origin-left bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500"
                     style={{ width: lineSize }}
                   />
                 </div>
 
-                {/* ITEMS */}
                 <div className="relative flex justify-between gap-6 mt-10">
                   {education.map((edu, index) => (
                     <TimelineScroller
@@ -105,19 +96,15 @@ export default function Education() {
               </div>
             )}
 
-            {/* MOBILE */}
             {isMobile && (
               <div className="relative w-full max-w-md px-4">
-
-                {/* VERTICAL LINE */}
                 <div className="absolute left-4 top-0 bottom-0 w-[3px] bg-white/20 rounded">
                   <motion.div
-                    className="absolute top-0 left-0 w-full bg-white rounded origin-top"
+                    className="absolute top-0 left-0 w-full rounded origin-top bg-gradient-to-b from-emerald-400 via-teal-400 to-blue-500"
                     style={{ height: lineSize }}
                   />
                 </div>
 
-                {/* ITEMS */}
                 <div className="relative flex flex-col gap-12 ml-10 mt-6 pb-28">
                   {education.map((edu, index) => (
                     <TimelineScroller
@@ -134,7 +121,6 @@ export default function Education() {
                 </div>
               </div>
             )}
-
           </div>
         </div>
       </div>

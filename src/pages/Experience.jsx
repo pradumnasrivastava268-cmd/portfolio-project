@@ -78,9 +78,9 @@ export default function Experience() {
   const lineSize = useTransform(scrollYProgress, (v) => `${v * 100}%`);
 
   return (
-    <section id="experience" className="relative bg-black text-white">
+    <section id="experience" className="relative bg-[#020617] text-white">
       <motion.h2
-        className="text-4xl sm:text-5xl font-semibold pt-8 md:pt-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-[#1580de] via-[#22217f] to-[#302b63]"
+        className="text-4xl sm:text-5xl font-semibold pt-8 md:pt-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-300 to-blue-400"
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -116,9 +116,9 @@ export default function Experience() {
           <div className="sticky top-0 h-screen flex flex-col">
             <div className="flex flex-1 items-center justify-center px-6 pb-10">
               <div className="relative w-full max-w-[1400px]">
-                <div className="relative h-2 bg-white/30 rounded-full">
+                <div className="relative h-2 bg-white/20 rounded-full">
                   <motion.div
-                    className="absolute top-0 left-0 h-2 bg-white rounded-full"
+                    className="absolute top-0 left-0 h-2 rounded-full bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500"
                     style={{ width: lineSize }}
                   />
                 </div>
