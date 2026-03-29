@@ -36,9 +36,6 @@ export default function TimelineScroller({
   );
   const x = useTransform(scrollYProgress, [start, end], [-24, 0]);
 
-  // =========================
-  // ✅ EXPERIENCE - DESKTOP
-  // =========================
   if (type === "exp" && layout === "desktop") {
     return (
       <div className="relative flex flex-1 justify-center items-center min-w-0">
@@ -60,7 +57,6 @@ export default function TimelineScroller({
           } bg-gray-900/80 backdrop-blur border border-gray-700/70 rounded-xl p-5 shadow-lg`}
           style={{ opacity, y, width: 320, maxWidth: "42vw" }}
         >
-          {/* ✅ LOGO + HEADER */}
           <div className="flex items-center gap-3 mb-2">
             <img
               src={exp.logo}
@@ -82,45 +78,47 @@ export default function TimelineScroller({
     );
   }
 
-  // =========================
-  // ✅ EXPERIENCE - MOBILE
-  // =========================
   if (type === "exp" && layout === "mobile") {
     return (
-      <div className="relative flex items-start gap-4 pl-2">
+      <div className="relative pl-10">
         <motion.div
-          className="absolute -left-3.5 top-3 z-10 w-7 h-7 rounded-full bg-white"
-          style={{ opacity }}
+          className="absolute left-0 top-4 z-10 w-6 h-6 rounded-full bg-white"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
         />
 
         <motion.article
-          className="bg-gray-900/80 backdrop-blur border border-gray-700/70 rounded-xl p-5 shadow-lg w-full"
-          style={{ opacity, x }}
+          className="w-full rounded-xl border border-gray-700/70 bg-gray-900/80 backdrop-blur p-4 sm:p-5 shadow-lg"
+          initial={{ opacity: 0, x: 24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.2 }}
         >
-          <div className="flex items-center gap-3 mb-2">
+          <div className="flex items-start gap-3 mb-3">
             <img
               src={exp.logo}
               alt={exp.company}
-              className="w-8 h-8 object-contain rounded-md bg-white p-1 shadow"
+              className="w-8 h-8 object-contain rounded-md bg-white p-1 shadow shrink-0"
             />
-            <div>
-              <h3 className="text-lg font-semibold">{exp.role}</h3>
-              <p className="text-xs text-gray-400">
+            <div className="min-w-0">
+              <h3 className="text-lg leading-snug font-semibold break-words">
+                {exp.role}
+              </h3>
+              <p className="text-xs text-gray-400 leading-relaxed">
                 {exp.company} | {exp.duration}
               </p>
             </div>
           </div>
 
-          <p className="text-sm text-gray-300">{exp.description}</p>
+          <p className="text-sm leading-7 text-gray-300">{exp.description}</p>
           <Pills items={exp.technologies} />
         </motion.article>
       </div>
     );
   }
 
-  // =========================
-  // 🎓 EDUCATION - DESKTOP
-  // =========================
   if (type === "edu" && layout === "desktop") {
     return (
       <div className="relative flex flex-1 justify-center items-center min-w-0">
@@ -153,9 +151,6 @@ export default function TimelineScroller({
     );
   }
 
-  // =========================
-  // 🎓 EDUCATION - MOBILE
-  // =========================
   if (type === "edu" && layout === "mobile") {
     return (
       <div className="relative flex items-start gap-4 pl-2">
@@ -179,5 +174,5 @@ export default function TimelineScroller({
     );
   }
 
-  return null; // fallback
+  return null;
 }
