@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { FaChartLine } from "react-icons/fa";
 import { RiFileExcel2Fill } from "react-icons/ri";
 import { SiSap } from "react-icons/si";
 import { MdFlight, MdSettingsApplications } from "react-icons/md";
-import { motion, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { GiCargoCrate } from "react-icons/gi";
 
 export default function Skills() {
@@ -19,125 +19,57 @@ export default function Skills() {
     },
   ];
 
-  const repeated = [...skills, ...skills];
-  const [dir, setDir] = useState(-1);
-  const [active, setActive] = useState(false);
-  const sectionRef = useRef(null);
-  const trackRef = useRef(null);
-  const touchY = useRef(null);
-  const X = useMotionValue(0);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        setActive(entry.isIntersecting && entry.intersectionRatio > 0.1);
-      },
-      { threshold: [0.1] },
-    );
-
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!active) return;
-
-    const onWheel = (e) => setDir(e.deltaY > 0 ? -1 : 1);
-    const onTouchStart = (e) => (touchY.current = e.touches[0].clientY);
-    const onTouchMove = (e) => {
-      if (touchY.current == null) return;
-      const delta = e.touches[0].clientY - touchY.current;
-      setDir(delta > 0 ? 1 : -1);
-      touchY.current = e.touches[0].clientY;
-    };
-
-    window.addEventListener("wheel", onWheel, { passive: true });
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: true });
-
-    return () => {
-      window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchmove", onTouchMove);
-    };
-  }, [active]);
-
-  useEffect(() => {
-    let id;
-    let last = performance.now();
-    const SPEED = 80;
-
-    const tick = (now) => {
-      const dt = (now - last) / 1000;
-      last = now;
-      let next = X.get() + dir * dt * SPEED;
-      const loop = trackRef.current?.scrollWidth / 2 || 0;
-
-      if (loop) {
-        if (next <= -loop) next += loop;
-        if (next >= 0) next -= loop;
-      }
-
-      X.set(next);
-      id = requestAnimationFrame(tick);
-    };
-
-    id = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(id);
-  }, [dir, X]);
-
   return (
     <section
       id="skills"
-      className="w-full py-16 flex flex-col items-center justify-center relative bg-[#020617] text-white overflow-hidden"
-      ref={sectionRef}
+      className="relative w-full overflow-hidden bg-[#020617] px-6 py-20 text-white md:px-10 lg:px-12"
     >
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-[300px] h-[300px] rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-600 opacity-20 blur-[120px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-0 w-[300px] h-[300px] rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-600 opacity-20 blur-[120px] animate-pulse delay-500" />
+        <div className="absolute top-1/4 left-0 h-[300px] w-[300px] rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-600 opacity-20 blur-[120px]" />
+        <div className="absolute bottom-1/4 right-0 h-[300px] w-[300px] rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-600 opacity-20 blur-[120px]" />
       </div>
 
-      <motion.h2
-        className="text-4xl mt-5 sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 via-teal-300 to-blue-400 z-10"
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-      >
-        My Skills
-      </motion.h2>
-
-      <motion.p
-        className="mt-2 mb-8 text-slate-300 text-base sm:text-lg z-10"
-        initial={{ opacity: 0, y: -10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-      >
-        Applications | Technologies
-      </motion.p>
-
-      <div className="relative w-full overflow-hidden">
-        <motion.div
-          className="flex gap-10 text-6xl text-teal-300"
-          ref={trackRef}
-          style={{ x: X, whiteSpace: "nowrap", willChange: "transform" }}
+      <div className="relative z-10 mx-auto max-w-6xl">
+        <motion.h2
+          className="text-center text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-300 to-blue-400 sm:text-5xl"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true }}
         >
-          {repeated.map((s, i) => (
-            <div
-              key={i}
-              className="flex flex-col items-center gap-2 min-w-[120px]"
-              aria-label={s.name}
-              title={s.name}
+          My Skills
+        </motion.h2>
+
+        <motion.p
+          className="mt-2 mb-10 text-center text-base text-slate-300 sm:text-lg"
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true }}
+        >
+          Applications | Technologies
+        </motion.p>
+
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          {skills.map((skill, index) => (
+            <motion.div
+              key={skill.name}
+              className="flex min-h-[150px] flex-col items-center justify-center rounded-2xl border border-teal-300/15 bg-slate-900/70 px-4 py-6 text-center shadow-lg backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-teal-300/35"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: index * 0.08 }}
+              viewport={{ once: true, amount: 0.2 }}
             >
-              <span className="hover:scale-125 hover:text-blue-300 transition-all duration-300">
-                {s.icon}
-              </span>
-              <p className="text-sm text-slate-300">{s.name}</p>
-            </div>
+              <div className="mb-4 text-5xl text-teal-300 transition-colors duration-300 hover:text-blue-300">
+                {skill.icon}
+              </div>
+
+              <p className="text-sm leading-5 text-slate-200 sm:text-[15px]">
+                {skill.name}
+              </p>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -10,6 +10,7 @@ import Skills from "./pages/Skills";
 import CustomCursor from "./components/CustomCursor";
 import IntroAnimation from "./components/IntroAnimation";
 import Education from "./pages/Education";
+import TransportScroller from "./components/TransportScroller";
 
 export default function App() {
   const [introDone, setIntroDone] = useState(false);
@@ -22,6 +23,7 @@ export default function App() {
         <div className="relative min-h-screen gradient text-white overflow-x-hidden">
           <CustomCursor />
           <Navbar />
+          <TransportScroller />
           <Home />
           <About />
           <Skills />

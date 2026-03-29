@@ -127,7 +127,7 @@ export default function Home() {
               href="#experience"
               className="px-6 py-3 rounded-full font-medium text-lg text-white shadow-lg transition-all hover:scale-105 bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-600"
             >
-              View My Work
+              Work Experience
             </a>
 
             <a

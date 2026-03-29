@@ -1,84 +1,58 @@
-import { motion } from "framer-motion";
 import React from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { motion } from "framer-motion";
+import ProjectCard from "../components/ProjectCard";
 
-export default function Footer() {
-  const socials = [
-    {
-      Icon: FaLinkedin,
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/pradumnasrivastava",
-    },
-    {
-      Icon: FaGithub,
-      label: "GitHub",
-      href: "https://github.com/pradumnasrivastava268-cmd",
-    },
-  ];
+const projects = [
+  {
+    id: 1,
+    title: "Dissertation - MSc",
+    description:
+      "Leading the design of a reverse logistics optimisation system to improve returns management, inventory recovery, and last-mile operations while enhancing cost efficiency, sustainability, and end-to-end supply chain performance.",
+    technologies: ["Supply Chain", "Reverse Logistics", "Network Optimisation"],
+  },
+  {
+    id: 2,
+    title: "Final Year Project - B.Tech",
+    description:
+      "Designed an innovative and eco-friendly personal mobility solution: E-Roller Skates, a compact electric mobility concept for urban commuting using a reverse charging mechanism to enable bidirectional energy flow and support sustainability.",
+    technologies: ["Machine Design", "Reverse Charging", "Sustainability"],
+  },
+];
 
-  const glowVariants = {
-    initial: { scale: 1, y: 0, filter: "drop-shadow(0 0 0 rgba(0,0,0,0))" },
-    hover: {
-      scale: 1.15,
-      y: -3,
-      filter:
-        "drop-shadow(0 0 10px rgba(16,185,129,0.8)) drop-shadow(0 0 20px rgba(59,130,246,0.7))",
-    },
-    tap: {
-      scale: 0.95,
-      y: 0,
-      transition: { duration: 0.08 },
-    },
-  };
-
+export default function Projects() {
   return (
-    <footer className="relative overflow-hidden bg-[#020617]">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_60%_at_70%_35%,rgba(20,184,166,0.20),transparent_70%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_55%_at_30%_70%,rgba(59,130,246,0.16),transparent_70%)]" />
+    <section
+      id="projects"
+      className="relative w-full overflow-hidden bg-[#020617] text-white py-24 px-6 md:px-10 lg:px-12"
+    >
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-10 -left-10 h-[22rem] w-[22rem] rounded-full bg-gradient-to-r from-emerald-500/20 via-teal-500/15 to-blue-600/15 blur-[120px]" />
+        <div className="absolute bottom-0 right-10 h-[24rem] w-[24rem] rounded-full bg-gradient-to-r from-emerald-500/15 via-teal-500/15 to-blue-600/20 blur-[140px]" />
+      </div>
 
-      <motion.div
-        className="relative z-10 px-4 sm:px-8 lg:px-10 py-12 md:py-16 flex flex-col items-center text-center gap-4"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <div className="h-[3px] w-24 md:w-32 rounded-full bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500" />
-
-        <p className="text-slate-300 text-sm sm:text-base italic">
-          Delivering efficient, data-driven, and scalable supply chain solutions.
-        </p>
-
-        <a
-          href="mailto:pradumnasrivastava72@gmail.com"
-          className="text-teal-300 text-sm hover:text-white transition-colors duration-200"
+      <div className="relative z-10 mx-auto flex max-w-6xl flex-col gap-12">
+        <motion.h2
+          className="text-center text-4xl sm:text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-300 to-blue-400"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
         >
-          pradumnasrivastava72@gmail.com
-        </a>
+          Projects
+        </motion.h2>
 
-        <div className="flex gap-5 text-2xl md:text-3xl mt-1">
-          {socials.map(({ Icon, label, href }) => (
-            <motion.a
-              key={label}
-              href={href}
-              aria-label={label}
-              target="_blank"
-              rel="noopener noreferrer"
-              variants={glowVariants}
-              initial="initial"
-              whileHover="hover"
-              whileTap="tap"
-              className="text-slate-300 inline-flex items-center justify-center hover:text-white transition-colors"
-            >
-              <Icon />
-            </motion.a>
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true, amount: 0.15 }}
+        >
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
-        </div>
-
-        <p className="text-xs text-slate-500 mt-2">
-          &copy; {new Date().getFullYear()} Pradumna Srivastava. All rights reserved.
-        </p>
-      </motion.div>
-    </footer>
+        </motion.div>
+      </div>
+    </section>
   );
 }
