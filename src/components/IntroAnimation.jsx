@@ -3,7 +3,7 @@ import React, { useState, useMemo, useEffect } from "react";
 
 export default function IntroAnimation({ onFinish }) {
   const intro = useMemo(
-    () => ["Hi", "Welcome", "To", "My", "Portfolio"],
+    () => ["Hi", "Welcome", "To", "My", "E-Resume"],
     [],
   );
 

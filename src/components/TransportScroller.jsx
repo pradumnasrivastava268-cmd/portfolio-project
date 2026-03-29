@@ -41,7 +41,7 @@ const TransportScroller = () => {
   };
 
   return (
-    <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden md:flex">
+    <div className="fixed right-3 md:right-6 bottom-6 md:top-1/2 md:-translate-y-1/2 z-50 flex">
       <div
         className="relative flex items-start justify-center"
         style={{ height: LINE_HEIGHT, width: "80px" }}
